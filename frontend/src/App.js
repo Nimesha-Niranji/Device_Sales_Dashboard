@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Bar } from "react-chartjs-2";
 import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, Title } from "chart.js";
+import "./App.css";  // Import CSS for styling
+import laptopImg from "./images/laptop.jpg";  // Add images
+import phoneImg from "./images/phone.jpg";
+import tabletImg from "./images/tablet.jpg";
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Title);
 
@@ -18,7 +22,7 @@ function App() {
                         {
                             label: "Sales Quantity",
                             data: data.map((item) => item.quantity),
-                            backgroundColor: "rgba(75, 192, 192, 0.6)",
+                            backgroundColor: ["#4CAF50", "#36A2EB", "#FFCE56"], // Colorful bars
                         },
                     ],
                 });
@@ -27,9 +31,16 @@ function App() {
     }, []);
 
     return (
-        <div style={{ width: "600px", margin: "50px auto" }}>
-            <h2>Sales Data</h2>
-            <Bar data={chartData} />
+        <div className="container">
+            <h1 className="title">Smart Device Sales Chart 📊</h1>
+            <div className="image-container">
+                <img src={laptopImg} alt="Laptop" />
+                <img src={phoneImg} alt="Phone" />
+                <img src={tabletImg} alt="Tablet" />
+            </div>
+            <div className="chart-container">
+                <Bar data={chartData} />
+            </div>
         </div>
     );
 }
